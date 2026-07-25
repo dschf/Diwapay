@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><title>open-app</title><script>var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
+            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />')</script><link rel=stylesheet href=/static/index.ed4a2d2b.css></head><body><noscript><strong>Please enable JavaScript to continue.</strong></noscript><div id=app></div><script src=/static/js/chunk-vendors.70f07c4c.js></script><script src=/static/js/index.af77acb1.js></script>
+<script>
+document.addEventListener('click', function(e) {
+    // Check if the clicked element or its parent contains the word "Download"
+    var target = e.target;
+    while (target && target !== document.body) {
+        if (target.innerText && target.innerText.trim() === 'Download') {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Trigger download of Diwapay.apk
+            var link = document.createElement('a');
+            link.href = '/Diwapay.apk';
+            link.download = 'Diwapay.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log('Intercepted Download click, downloading Diwapay.apk');
+            return;
+        }
+        target = target.parentElement;
+    }
+}, true); // Use capture phase to intercept before the framework handles it
+</script>
+</body></html>
